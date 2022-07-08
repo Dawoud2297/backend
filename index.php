@@ -12,26 +12,20 @@ spl_autoload_register(function ($class){
 // instantiate classes
 
 $database = new Dbh();
-
 $getDvd = new Dvd();
-
 $getBook = new Book();
-
 $getFur = new Furniture();
-
 
 // Get All Products
 
 $fatherArray = array($getDvd->getDvdData(),$getBook->getBookData(),$getFur->getFurnitureData());
 echo json_encode($fatherArray);
 
-
 // post product
 
 $getDvd->postData();
 $getFur->postData();
 $getBook->postData();
-
 
 // delete product
 

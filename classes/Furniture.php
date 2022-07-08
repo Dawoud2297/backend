@@ -41,7 +41,7 @@ class Furniture extends Dbh implements Differenciate
 
         $result = $this->connection()->query($sql1);
 
-        if(empty($result)){
+        if (empty($result)) {
             $sql = "CREATE TABLE furniture (
             name VARCHAR(30) NOT NULL,
             sku VARCHAR(30) UNIQUE NOT NULL,
@@ -53,7 +53,7 @@ class Furniture extends Dbh implements Differenciate
 
             )";
 
-            if($this->connection()->query($sql) === TRUE) {
+            if ($this->connection()->query($sql) === TRUE) {
                 echo "Table is created successfully";
             } else {
                 echo "Error creating table: " . $this->connection()->error;
@@ -62,7 +62,7 @@ class Furniture extends Dbh implements Differenciate
 
         $json_array = array();
 
-        while($row = mysqli_fetch_assoc($result)){
+        while ($row = mysqli_fetch_assoc($result)) {
             $json_array[] = $row;
         }
         return $json_array;
@@ -70,13 +70,13 @@ class Furniture extends Dbh implements Differenciate
 
     public function deleteDataFromFurniture()
     {
-        if(isset($_GET['sku'])){
+        if (isset($_GET['sku'])) {
             $sku = $_GET['sku'];
             $sqld = "DELETE FROM furniture WHERE sku='$sku'";
             
-            if($sqld !== null && $this->connection()->query($sqld) === true){
+            if ($sqld !== null && $this->connection()->query($sqld) === true) {
                 $res = ['status'=> 1, 'message'=> "Record deleted successfully!"];
-            }else{
+            } else {
                 $res = ['status'=> 0, 'message'=> "Failed to delete record!"];
             }
             return json_encode($res);

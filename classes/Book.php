@@ -19,9 +19,9 @@ class Book extends Dbh implements Differenciate
 
       $insert = "INSERT INTO book(name,sku,price,weight) VALUES('$this->name','$this->sku','$this->price','$this->weight')";
 
-      if($this->connection()->query($insert)){
+      if ($this->connection()->query($insert)) {
           $res = ['status'=> 1, 'message'=> "Record successfully created!"];
-      }else{
+      } else {
           $res = ['status'=> 0, 'message'=> "Failed to create record!"];
       }
       echo json_encode($res);
@@ -33,7 +33,7 @@ class Book extends Dbh implements Differenciate
 
     $result = $this->connection()->query($sql);
 
-    if(empty($result)){
+    if (empty($result)) {
       $sql = "CREATE TABLE book (
         name VARCHAR(30) NOT NULL,
         sku VARCHAR(30) UNIQUE NOT NULL,
@@ -41,7 +41,7 @@ class Book extends Dbh implements Differenciate
         weight INT(6) UNSIGNED NOT NULL
         )";
 
-        if($this->connection()->query($sql) === TRUE) {
+        if ($this->connection()->query($sql) === TRUE) {
             echo "Table is created successfully";
         } else {
           echo "Error creating table: " . $this->connection()->error;
@@ -50,7 +50,7 @@ class Book extends Dbh implements Differenciate
 
     $json_array = array();
 
-    while($row = mysqli_fetch_assoc($result)){
+    while ($row = mysqli_fetch_assoc($result)) {
       $json_array[] = $row;
     }
       return $json_array;
@@ -58,13 +58,13 @@ class Book extends Dbh implements Differenciate
 
   public function deleteDataFromBook()
   {
-    if(isset($_GET['sku'])){
+    if (isset($_GET['sku'])) {
       $sku = $_GET['sku'];
       $sqld = "DELETE FROM book WHERE sku='$sku'";
 
-      if($sqld !== null && $this->connection()->query($sqld) === true){
+      if ($sqld !== null && $this->connection()->query($sqld) === true) {
         $res = ['status'=> 1, 'message'=> "Record deleted successfully!"];
-      }else{
+      } else {
         $res = ['status'=> 0, 'message'=> "Failed to delete recorde!"];
       }
       return json_encode($res);
