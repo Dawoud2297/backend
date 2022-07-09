@@ -72,6 +72,7 @@ class Book extends Dbh implements Differenciate
   }
   public function postData()
   {
+      http_response_code(200);
       $req = json_decode(file_get_contents('php://input', true),true);  
       $_SERVER['REQUEST_METHOD'] === 'POST' && array_key_exists("weight",$req) && $this->differences();
   }
