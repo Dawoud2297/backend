@@ -24,7 +24,7 @@ class Book extends Dbh implements Differenciate
       } else {
           $res = ['status'=> 0, 'message'=> "Failed to create record!"];
       }
-      echo json_encode($res);
+      return json_encode($res);
   }
 
   public function getBookData()
