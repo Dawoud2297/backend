@@ -15,7 +15,8 @@ class Dvd extends Dbh implements Differenciate
         $this->price = $content['price'];
         $this->size = $content['size'];
 
-        $insert = "INSERT INTO dvd(name,sku, price, size) VALUES('$this->name', '$this->sku', '$this->price', '$this->size')";
+        $insert = "INSERT INTO dvd(name,sku, price, size) 
+        VALUES('$this->name', '$this->sku', '$this->price', '$this->size')";
         $sql = "SELECT * FROM dvd WHERE sku='$this->sku'";
         $uniqueSku = $this->connection()->query($sql);
 
