@@ -16,7 +16,8 @@ class Book extends Dbh implements Differenciate
         $this->price = $content['price'];
         $this->weight = $content['weight'];
 
-        $insert = "INSERT INTO book(name,sku,price,weight) VALUES('$this->name','$this->sku','$this->price','$this->weight')";
+        $insert = "INSERT INTO book(name,sku,price,weight) 
+        VALUES('$this->name','$this->sku','$this->price','$this->weight')";
         $sql = "SELECT * FROM book WHERE sku='$this->sku'";
         $uniqueSku = $this->connection()->query($sql);
         
